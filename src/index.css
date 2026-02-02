@@ -1,96 +1,126 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Outfit:wght@100;200;300;400;500;600&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
+/* Innocenzi Falegnameria - Luxury Woodworking Design System
+   Inspired by high-end yacht interiors and Italian craftsmanship
+   Colors: Deep walnut, warm ivory, navy accents, gold details
 */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Core palette - warm luxury tones */
+    --background: 40 30% 98%;
+    --foreground: 25 30% 12%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    /* Cards and surfaces */
+    --card: 40 25% 96%;
+    --card-foreground: 25 30% 12%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 40 30% 98%;
+    --popover-foreground: 25 30% 12%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Primary - Deep walnut brown */
+    --primary: 25 35% 22%;
+    --primary-foreground: 40 30% 96%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Secondary - Warm cream/ivory */
+    --secondary: 38 40% 92%;
+    --secondary-foreground: 25 30% 15%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    /* Muted tones */
+    --muted: 35 20% 90%;
+    --muted-foreground: 25 15% 45%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    /* Accent - Navy blue (nautical) */
+    --accent: 215 45% 25%;
+    --accent-foreground: 40 30% 96%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    /* Gold accent for luxury details */
+    --gold: 42 75% 45%;
+    --gold-foreground: 25 30% 12%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    /* Destructive */
+    --destructive: 0 65% 45%;
+    --destructive-foreground: 40 30% 98%;
 
-    --radius: 0.5rem;
+    /* UI elements */
+    --border: 35 25% 85%;
+    --input: 35 25% 88%;
+    --ring: 25 35% 30%;
 
-    --sidebar-background: 0 0% 98%;
+    --radius: 0.25rem;
 
-    --sidebar-foreground: 240 5.3% 26.1%;
+    /* Sidebar */
+    --sidebar-background: 25 30% 10%;
+    --sidebar-foreground: 40 25% 90%;
+    --sidebar-primary: 42 75% 50%;
+    --sidebar-primary-foreground: 25 30% 10%;
+    --sidebar-accent: 25 25% 18%;
+    --sidebar-accent-foreground: 40 25% 90%;
+    --sidebar-border: 25 20% 20%;
+    --sidebar-ring: 42 75% 50%;
 
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    /* Custom luxury tokens */
+    --walnut: 25 35% 22%;
+    --walnut-light: 25 25% 35%;
+    --cream: 40 35% 95%;
+    --ivory: 38 40% 92%;
+    --navy: 215 45% 25%;
+    --navy-deep: 215 50% 15%;
+    --charcoal: 25 20% 15%;
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
+    --background: 25 25% 8%;
+    --foreground: 40 25% 92%;
 
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
+    --card: 25 20% 12%;
+    --card-foreground: 40 25% 92%;
 
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 25 20% 10%;
+    --popover-foreground: 40 25% 92%;
 
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    --primary: 40 30% 85%;
+    --primary-foreground: 25 30% 10%;
 
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 25 20% 18%;
+    --secondary-foreground: 40 25% 90%;
 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
+    --muted: 25 20% 20%;
+    --muted-foreground: 35 15% 60%;
 
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 215 40% 50%;
+    --accent-foreground: 40 30% 96%;
 
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
+    --gold: 42 75% 55%;
+    --gold-foreground: 25 30% 10%;
 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --destructive: 0 55% 40%;
+    --destructive-foreground: 40 30% 98%;
+
+    --border: 25 20% 20%;
+    --input: 25 20% 22%;
+    --ring: 40 30% 80%;
+
+    --sidebar-background: 25 25% 6%;
+    --sidebar-foreground: 40 25% 90%;
+    --sidebar-primary: 42 75% 55%;
+    --sidebar-primary-foreground: 25 30% 8%;
+    --sidebar-accent: 25 20% 15%;
+    --sidebar-accent-foreground: 40 25% 90%;
+    --sidebar-border: 25 20% 15%;
+    --sidebar-ring: 42 75% 55%;
+
+    --walnut: 25 25% 35%;
+    --walnut-light: 25 20% 50%;
+    --cream: 40 20% 15%;
+    --ivory: 38 25% 18%;
+    --navy: 215 40% 45%;
+    --navy-deep: 215 45% 25%;
+    --charcoal: 25 15% 90%;
   }
 }
 
@@ -99,7 +129,139 @@ All colors MUST be HSL.
     @apply border-border;
   }
 
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-weight: 300;
+    letter-spacing: 0.01em;
+  }
+
+  /* Editorial typography */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+  }
+
+  h1 {
+    @apply text-5xl md:text-7xl lg:text-8xl leading-none tracking-tight;
+  }
+
+  h2 {
+    @apply text-3xl md:text-5xl lg:text-6xl leading-tight;
+  }
+
+  h3 {
+    @apply text-2xl md:text-3xl lg:text-4xl leading-snug;
+  }
+
+  /* Refined paragraph styles */
+  p {
+    @apply leading-relaxed;
+  }
+
+  .text-editorial {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-weight: 400;
+    font-style: italic;
+  }
+
+  .text-label {
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-weight: 400;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-size: 0.7rem;
+  }
+}
+
+@layer components {
+  /* Luxury section spacing */
+  .section-luxury {
+    @apply py-24 md:py-32 lg:py-40;
+  }
+
+  .section-compact {
+    @apply py-16 md:py-24 lg:py-32;
+  }
+
+  /* Container with generous margins */
+  .container-luxury {
+    @apply max-w-7xl mx-auto px-6 md:px-12 lg:px-16;
+  }
+
+  .container-narrow {
+    @apply max-w-4xl mx-auto px-6 md:px-12;
+  }
+
+  /* Divider line with gold accent */
+  .divider-gold {
+    @apply w-16 h-px bg-gold mx-auto my-8;
+  }
+
+  .divider-subtle {
+    @apply w-full h-px bg-border;
+  }
+
+  /* Image with luxury overlay */
+  .image-luxury {
+    @apply relative overflow-hidden;
+  }
+
+  .image-luxury::after {
+    content: '';
+    @apply absolute inset-0 bg-gradient-to-t from-charcoal/30 to-transparent;
+  }
+
+  /* Text reveal animation helper */
+  .text-reveal {
+    @apply opacity-0 translate-y-8;
+  }
+
+  /* Button luxury variants - handled in component */
+}
+
+@layer utilities {
+  /* Blend modes for images */
+  .blend-multiply {
+    mix-blend-mode: multiply;
+  }
+
+  /* Custom spacing for editorial layouts */
+  .space-editorial {
+    @apply space-y-6 md:space-y-8;
+  }
+
+  /* Animated underline effect */
+  .underline-animated {
+    @apply relative;
+  }
+
+  .underline-animated::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-0 h-px bg-current transition-all duration-500;
+  }
+
+  .underline-animated:hover::after {
+    @apply w-full;
+  }
+
+  /* Grain texture overlay */
+  .grain-overlay {
+    position: relative;
+  }
+
+  .grain-overlay::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    opacity: 0.03;
+    pointer-events: none;
+    z-index: 1;
   }
 }

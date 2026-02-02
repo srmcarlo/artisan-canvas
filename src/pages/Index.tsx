@@ -15,7 +15,7 @@ const Index = () => {
     <LanguageProvider>
       <div className="min-h-screen bg-background">
         <Header />
-        <main>
+        <main id="main-content">
           <HeroSection />
           <PhilosophySection />
           <ExpertiseSection />

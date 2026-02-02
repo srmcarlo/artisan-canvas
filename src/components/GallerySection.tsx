@@ -70,26 +70,34 @@ const GallerySection = () => {
               initial={{ opacity: 0, y: 40 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.2 + index * 0.1 }}
-              className="group relative overflow-hidden cursor-pointer"
             >
-              <div className="aspect-[4/3] overflow-hidden">
-                <img
-                  src={project.image}
-                  alt={t(project.titleIt, project.titleEn)}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                />
-              </div>
-              {/* Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-charcoal/90 via-charcoal/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              {/* Content */}
-              <div className="absolute bottom-0 left-0 right-0 p-6 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
-                <h4 className="font-serif text-lg text-cream mb-1">
-                  {t(project.titleIt, project.titleEn)}
-                </h4>
-                <p className="text-cream/70 text-sm">
-                  {t(project.captionIt, project.captionEn)}
-                </p>
-              </div>
+              <button
+                className="group relative overflow-hidden cursor-pointer w-full text-left focus:outline-none focus:ring-4 focus:ring-gold focus:ring-offset-4 focus:ring-offset-charcoal rounded-sm transition-all"
+                onClick={() => {
+                  // Future: Open lightbox/modal
+                  console.log('Project clicked:', project.titleEn);
+                }}
+                aria-label={`View project: ${t(project.titleIt, project.titleEn)}`}
+              >
+                <div className="aspect-[4/3] overflow-hidden">
+                  <img
+                    src={project.image}
+                    alt={t(project.titleIt, project.titleEn)}
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 group-focus:scale-105"
+                  />
+                </div>
+                {/* Overlay - visible on hover AND focus */}
+                <div className="absolute inset-0 bg-gradient-to-t from-charcoal/90 via-charcoal/20 to-transparent opacity-0 group-hover:opacity-100 group-focus:opacity-100 transition-opacity duration-500" />
+                {/* Content - visible on hover AND focus */}
+                <div className="absolute bottom-0 left-0 right-0 p-6 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 group-focus:translate-y-0 group-focus:opacity-100 transition-all duration-500">
+                  <h4 className="font-serif text-lg text-cream mb-1">
+                    {t(project.titleIt, project.titleEn)}
+                  </h4>
+                  <p className="text-cream/70 text-sm">
+                    {t(project.captionIt, project.captionEn)}
+                  </p>
+                </div>
+              </button>
             </motion.div>
           ))}
         </div>

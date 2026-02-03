@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Globe } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Button } from '@/components/ui/button';
 
@@ -13,148 +13,134 @@ const Header = () => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
     };
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const navItems = [
     { it: 'Filosofia', en: 'Philosophy', href: '#philosophy' },
-    { it: 'Competenze', en: 'Expertise', href: '#expertise' },
-    { it: 'Yacht', en: 'Yachts', href: '#yachts' },
+    { it: 'Esperienza', en: 'Experience', href: '#yachts' },
     { it: 'Progetti', en: 'Projects', href: '#projects' },
-    { it: 'Contatti', en: 'Contact', href: '#contact' },
+    { it: 'Atelier', en: 'Atelier', href: '#expertise' },
   ];
 
   return (
     <>
-      {/* Skip Link for Keyboard Navigation */}
-      <a
-        href="#main-content"
-        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[60] focus:px-6 focus:py-3 focus:bg-gold focus:text-charcoal focus:rounded-md focus:shadow-xl focus:outline-none focus:ring-2 focus:ring-gold focus:ring-offset-2 transition-all"
-      >
-        Skip to main content
-      </a>
+      <a href="#main-content" className="sr-only focus:not-sr-only">Skip to content</a>
 
       <motion.header
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.8, ease: 'easeOut' }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled
-          ? 'bg-background/95 backdrop-blur-md border-b border-border'
-          : 'bg-transparent'
+        initial={{ y: -100, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 px-6 md:px-12 py-4 ${isScrolled
+            ? 'mt-4 mx-4 md:mx-12 rounded-full bg-charcoal/80 backdrop-blur-xl border border-gold/20 shadow-[0_8px_32px_rgba(0,0,0,0.4)]'
+            : 'bg-transparent mt-0'
           }`}
       >
-        <div className="container-luxury">
-          <div className="flex items-center justify-between h-20 md:h-24">
-            {/* Logo */}
-            <a
-              href="#"
-              className="relative z-10 focus:outline-none focus:ring-2 focus:ring-gold focus:ring-offset-2 rounded-sm transition-all"
-            >
-              <span className="font-serif text-xl md:text-2xl tracking-wide text-foreground">
-                Innocenzi
-              </span>
-              <span className="hidden md:inline font-serif text-xl md:text-2xl tracking-wide text-muted-foreground ml-2">
-                Falegnameria
-              </span>
-            </a>
+        <div className="max-w-[1800px] mx-auto flex items-center justify-between">
+          {/* Brand */}
+          <a href="#" className="group flex flex-col">
+            <span className={`font-['Cinzel'] text-xl md:text-2xl tracking-[0.2em] uppercase transition-colors duration-500 ${isScrolled ? 'text-cream' : 'text-cream'}`}>
+              Innocenzi
+            </span>
+            <span className="text-[10px] tracking-[0.5em] uppercase text-gold opacity-80 group-hover:opacity-100 transition-opacity">
+              Falegnameria
+            </span>
+          </a>
 
-            {/* Desktop Navigation */}
-            <nav className="hidden lg:flex items-center gap-8">
-              {navItems.map((item) => (
-                <a
-                  key={item.href}
-                  href={item.href}
-                  className="text-label text-muted-foreground hover:text-foreground transition-colors duration-300 underline-animated focus:outline-none focus:ring-2 focus:ring-gold focus:ring-offset-2 rounded-sm"
-                >
+          {/* Desktop Nav */}
+          <nav className="hidden lg:flex items-center gap-12">
+            {navItems.map((item) => (
+              <a
+                key={item.href}
+                href={item.href}
+                className={`text-[11px] font-medium uppercase tracking-[0.3em] transition-all duration-500 hover:text-gold ${isScrolled ? 'text-cream/70' : 'text-cream/80'
+                  } relative overflow-hidden group`}
+              >
+                <span className="inline-block transition-transform duration-500 group-hover:-translate-y-full">
                   {t(item.it, item.en)}
-                </a>
-              ))}
-            </nav>
+                </span>
+                <span className="absolute left-0 top-full inline-block transition-transform duration-500 group-hover:-translate-y-full text-gold">
+                  {t(item.it, item.en)}
+                </span>
+              </a>
+            ))}
+          </nav>
 
-            {/* Language Toggle & CTA */}
-            <div className="hidden lg:flex items-center gap-6">
-              <div className="flex items-center gap-2">
+          {/* Tools */}
+          <div className="flex items-center gap-4 md:gap-8">
+            <div className="hidden sm:flex items-center gap-3">
+              <Globe className="w-3 h-3 text-gold/60" />
+              <div className="flex text-[10px] tracking-[0.2em] font-bold">
                 <button
                   onClick={() => setLanguage('it')}
-                  className={`text-label transition-all duration-300 px-2 py-1 rounded-sm focus:outline-none focus:ring-2 focus:ring-gold focus:ring-offset-2 ${language === 'it' ? 'text-foreground' : 'text-muted-foreground hover:text-foreground'
-                    }`}
-                  aria-label="Switch to Italian"
-                  aria-pressed={language === 'it'}
+                  className={`transition-colors duration-300 ${language === 'it' ? 'text-gold' : 'text-cream/40 hover:text-cream'}`}
                 >
                   IT
                 </button>
-                <span className="text-muted-foreground">/</span>
+                <span className="mx-2 text-cream/20">/</span>
                 <button
                   onClick={() => setLanguage('en')}
-                  className={`text-label transition-all duration-300 px-2 py-1 rounded-sm focus:outline-none focus:ring-2 focus:ring-gold focus:ring-offset-2 ${language === 'en' ? 'text-foreground' : 'text-muted-foreground hover:text-foreground'
-                    }`}
-                  aria-label="Switch to English"
-                  aria-pressed={language === 'en'}
+                  className={`transition-colors duration-300 ${language === 'en' ? 'text-gold' : 'text-cream/40 hover:text-cream'}`}
                 >
                   EN
                 </button>
               </div>
-              <Button variant="luxury-outline" size="luxury">
-                {t('Richiedi Consulenza', 'Request Consultation')}
-              </Button>
             </div>
 
-            {/* Mobile Menu Button */}
+            <Button
+              variant="outline"
+              className={`hidden md:flex rounded-full px-8 border-gold/30 hover:bg-gold hover:text-charcoal transition-all duration-500 uppercase text-[10px] tracking-[0.2em] font-bold h-10 ${isScrolled ? 'bg-transparent text-cream' : 'bg-charcoal/20 backdrop-blur-sm text-cream'
+                }`}
+            >
+              {t('Contatti', 'Contact')}
+            </Button>
+
+            {/* Mobile Toggle */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="lg:hidden relative z-10 p-2 focus:outline-none focus:ring-2 focus:ring-gold focus:ring-offset-2 rounded-sm transition-all"
-              aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
-              aria-expanded={isMobileMenuOpen}
+              className="lg:hidden w-10 h-10 flex items-center justify-center text-cream"
             >
-              {isMobileMenuOpen ? (
-                <X className="w-6 h-6 text-foreground" />
-              ) : (
-                <Menu className="w-6 h-6 text-foreground" />
-              )}
+              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
           </div>
         </div>
 
-        {/* Mobile Menu */}
+        {/* Mobile Menu Overlay */}
         <AnimatePresence>
           {isMobileMenuOpen && (
             <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.3 }}
-              className="lg:hidden bg-background border-b border-border"
+              initial={{ opacity: 0, x: '100%' }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: '100%' }}
+              transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+              className="fixed inset-0 top-0 left-0 w-full h-screen bg-charcoal/98 z-[60] flex flex-col p-12 lg:hidden"
             >
-              <nav className="container-luxury py-8 flex flex-col gap-6">
-                {navItems.map((item) => (
-                  <a
+              <div className="flex justify-between items-center mb-24">
+                <span className="font-['Cinzel'] text-2xl tracking-widest text-cream uppercase">Innocenzi</span>
+                <button onClick={() => setIsMobileMenuOpen(false)}><X size={32} className="text-gold" /></button>
+              </div>
+              <nav className="flex flex-col gap-8">
+                {navItems.map((item, idx) => (
+                  <motion.a
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: idx * 0.1 }}
                     key={item.href}
                     href={item.href}
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="text-label text-muted-foreground hover:text-foreground transition-colors duration-300"
+                    className="text-4xl font-serif text-cream hover:text-gold transition-colors italic"
                   >
                     {t(item.it, item.en)}
-                  </a>
+                  </motion.a>
                 ))}
-                <div className="flex items-center gap-4 pt-4 border-t border-border">
-                  <button
-                    onClick={() => setLanguage('it')}
-                    className={`text-label ${language === 'it' ? 'text-foreground' : 'text-muted-foreground'}`}
-                  >
-                    Italiano
-                  </button>
-                  <button
-                    onClick={() => setLanguage('en')}
-                    className={`text-label ${language === 'en' ? 'text-foreground' : 'text-muted-foreground'}`}
-                  >
-                    English
-                  </button>
-                </div>
-                <Button variant="luxury" size="luxury" className="mt-4">
+              </nav>
+              <div className="mt-auto flex flex-col gap-8">
+                <div className="h-px w-full bg-gold/20" />
+                <Button className="w-full h-16 rounded-none bg-gold text-charcoal font-bold uppercase tracking-widest">
                   {t('Richiedi Consulenza', 'Request Consultation')}
                 </Button>
-              </nav>
+              </div>
             </motion.div>
           )}
         </AnimatePresence>
